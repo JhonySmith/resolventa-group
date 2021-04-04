@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+
+import { SearchInput } from './styles';
 
 const SearchControl: React.FC = () => {
-  return <div></div>;
+	return (
+		<>
+			<SearchInput placeholder='Поиск по имени' />
+		</>
+	);
 };
 
 export default SearchControl;

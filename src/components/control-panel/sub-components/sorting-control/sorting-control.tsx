@@ -1,7 +1,17 @@
-import React from "react";
+import React from 'react';
+
+import { Description, Selector } from './styles';
 
 const SortingControl: React.FC = () => {
-  return <div></div>;
+	return (
+		<Description>
+			<Selector>
+				<option>Нет фильтра</option>
+				<option></option>
+				<option></option>
+			</Selector>
+		</Description>
+	);
 };
 
 export default SortingControl;
