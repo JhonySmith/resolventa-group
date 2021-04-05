@@ -1,26 +1,44 @@
-import React, { useState } from 'react';
-import FilterSelect from './filter-select/filter-select';
+import React, { useState } from "react";
+import FilterSelect from "./filter-select/filter-select";
 
 interface HeaderProps {
-	filterField: [
-		{
-			label: string;
-			value: string;
-		}
-	];
-	text: string;
+  filteredField?: {
+    label: string;
+    value: string;
+    indicator: string;
+  }[];
+  text: string;
+  getCurrentURL(): string;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
-	const { filterField, text } = props;
-	const [filterListOpened, setFilterListOpened] = useState(true);
-	return (
-		<th>
-			{text}
-			{filterField ? <button>Фильтровать</button> : ''}
-			{filterListOpened ? <FilterSelect filters={filterField} /> : ''}
-		</th>
-	);
+  const { filteredField, text, getCurrentURL } = props;
+  const [filterListOpened, setFilterListOpened] = useState(false);
+  return (
+    <th>
+      {text}
+      {filteredField ? (
+        <button
+          onClick={() => {
+            setFilterListOpened(!filterListOpened);
+          }}
+        >
+          Фильтровать
+        </button>
+      ) : (
+        ""
+      )}
+      {filterListOpened && filteredField ? (
+        <FilterSelect
+          filters={filteredField}
+          setFilterListOpened={setFilterListOpened}
+          getCurrentURL={getCurrentURL}
+        />
+      ) : (
+        ""
+      )}
+    </th>
+  );
 };
 
 export default Header;
